@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export const ToDoAdd = (props) => {
 
-    const [ input, setInput ] = useState('');
+    const [input, setInput] = useState('');
 
     const handleChange = e => {
         setInput(e.target.value)
@@ -13,35 +13,38 @@ export const ToDoAdd = (props) => {
 
         console.log('submitted');
 
-        // props.onSubmit({
-        //     id: Math.floor(Math.random()*10000),
-        //     text: input
-        // });
+        props.onSubmit({
+            id: Math.floor(Math.random()*10000),
+            text: input
+        });
+
+        setInput('');
+
     };
 
 
- 
+
 
     return (
         <>
-            <div className="row text-center">
 
-                <form className='form-control' onSubmit={handleSubmit}>
 
-                    <input 
+            <form className='form-control' onSubmit={handleSubmit}>
+
+                <input
                     type='text'
                     placeholder='add a to-do'
                     value={input}
                     name='todoval'
                     onChange={handleChange}
-                    />
+                />
 
-                    <button type='submit'>Submit</button>
+                <button type='submit'>Submit</button>
 
-                </form>
+            </form>
 
 
-            </div>
+
 
         </>
     )
