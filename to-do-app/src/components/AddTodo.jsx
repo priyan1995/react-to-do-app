@@ -36,6 +36,7 @@ const AddToDo = () => {
     return (
         <>
 
+<h2>Add new item</h2>
             <form onSubmit={addToDo} id="todoForm">              
 
                 <input
