@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import FirebaseDb from '../firebase';
 
-const AddToDo = (props) => {
+const AddToDo = () => {
 
 
     const initialData = ({
@@ -10,7 +11,7 @@ const AddToDo = (props) => {
 
     const [todo, setTodo] = useState(initialData);
 
-    
+
 
     const todoForm = document.getElementById('todoForm');
 
@@ -27,9 +28,19 @@ const AddToDo = (props) => {
         setTodo('');
         todoForm.reset();
         console.log(todo)
+
+        // props.addOrEdit(todo)
+
+        FirebaseDb.child('to-do').push(
+            todo,
+            err => {
+                if (err)
+                    console.log(err)
+            }
+        )
     }
 
-     props = todo
+
 
 
 
