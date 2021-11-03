@@ -16,6 +16,20 @@ export const ToDoList = (props) => {
         })
     }, [])
 
+
+    const onDelete = (key) =>{
+        if(window.confirm('Are you sure want to delete this record ?')){
+            FirebaseDb.child(`to-do/${key}`).remove(
+                err => {
+                    if(err){
+                    console.log(err)
+                    }
+
+                }
+            )
+        }
+    }
+
     return (
         <>
 
@@ -35,9 +49,13 @@ export const ToDoList = (props) => {
                         Object.keys(todos).map(id=>{
                             return(
                                 <>
-                                <tr>
+                                <tr key={id}>
                                     <td >{todos[id].todoId}</td>
                                     <td >{todos[id].todoItem}</td>
+                                    <td>
+                                        <a className="editbtn">Edit</a>
+                                        <a className="deletebtn" onClick={ () => onDelete(id) }>Delete</a>
+                                    </td>
                                 </tr>
 
                                 </>
