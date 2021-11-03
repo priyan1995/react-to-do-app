@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import FirebaseDb from '../firebase';
+import { Link  } from 'react-router-dom';
 
-export const ToDoList = (props) => {
+export const ToDoList = () => {
 
     const [todos, setTodos] = useState({})
 
@@ -17,14 +18,13 @@ export const ToDoList = (props) => {
     }, [])
 
 
-    const onDelete = (key) =>{
-        if(window.confirm('Are you sure want to delete this record ?')){
+    const onDelete = (key) => {
+        if (window.confirm('Are you sure want to delete this record ?')) {
             FirebaseDb.child(`to-do/${key}`).remove(
                 err => {
-                    if(err){
-                    console.log(err)
+                    if (err) {
+                        console.log(err)
                     }
-
                 }
             )
         }
@@ -46,17 +46,17 @@ export const ToDoList = (props) => {
                 <tbody>
 
                     {
-                        Object.keys(todos).map(id=>{
-                            return(
+                        Object.keys(todos).map(id => {
+                            return (
                                 <>
-                                <tr key={id}>
-                                    <td >{todos[id].todoId}</td>
-                                    <td >{todos[id].todoItem}</td>
-                                    <td>
-                                        <a className="editbtn">Edit</a>
-                                        <a className="deletebtn" onClick={ () => onDelete(id) }>Delete</a>
-                                    </td>
-                                </tr>
+                                    <tr key={id}>
+                                        <td >{todos[id].todoId}</td>
+                                        <td >{todos[id].todoItem}</td>
+                                        <td>
+                                            <Link className="editbtn" to={`/edit/${id}`}>Edit</Link>
+                                            <button className="deletebtn" onClick={() => onDelete(id)}>Delete</button>
+                                        </td>
+                                    </tr>
 
                                 </>
                             )

@@ -1,21 +1,44 @@
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddToDo from './components/AddTodo';
+import { EditTodo } from './components/EditTodo';
 import { ToDoList } from './components/TodoList';
+
 
 function App() {
   return (
-    <div className="react-todo-App">
+    <>
+      <Router>
+        <Switch>
+          <div className="react-todo-App">
 
-      <div className="text-center">
-      </div>
+            <div className="container ">
 
-      <div className="container ">
-        <AddToDo />
-        <ToDoList />
-      </div>
 
-    </div>
+
+
+
+              <Route exact path="/">
+                <AddToDo />
+                <ToDoList />
+              </Route>
+
+              <Route path="/edit/:editId">
+
+                <EditTodo />
+
+              </Route>
+
+
+
+
+            </div>
+
+          </div>
+        </Switch>
+      </Router >
+    </>
   );
 }
 
