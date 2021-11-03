@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export const ToDoList = () => {
+export const ToDoList = (props) => {
 
 
     return(
