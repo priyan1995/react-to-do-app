@@ -27,10 +27,6 @@ const AddToDo = () => {
         setTodo('');
         todoForm.reset();
         console.log(todo)
-
-
-
-
     }
 
 
@@ -40,15 +36,7 @@ const AddToDo = () => {
     return (
         <>
 
-            <form onSubmit={addToDo} id="todoForm">
-
-                {/* <input
-                    name="todoId"
-                    type="text"
-                    onChange={handleAddTodo}
-                    value={}
-                    
-                /> */}
+            <form onSubmit={addToDo} id="todoForm">              
 
                 <input
                     type="text"
