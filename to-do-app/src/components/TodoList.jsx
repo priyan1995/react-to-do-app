@@ -34,12 +34,12 @@ export const ToDoList = () => {
         <>
 
             <h2>To Do List</h2>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
-                        <td>ID</td>
-                        <td>Tasks</td>
-                        <td>Actions</td>
+                        <th>ID</th>
+                        <th>Tasks</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -53,8 +53,8 @@ export const ToDoList = () => {
                                         <td >{todos[id].todoId}</td>
                                         <td >{todos[id].todoItem}</td>
                                         <td>
-                                            <Link className="editbtn" to={`/edit/${id}`}>Edit</Link>
-                                            <button className="deletebtn" onClick={() => onDelete(id)}>Delete</button>
+                                            <Link className="editbtn btn btn-success" to={`/edit/${id}`}>Edit</Link>
+                                            <button className="deletebtn btn btn-danger" onClick={() => onDelete(id)}>Delete</button>
                                         </td>
                                     </tr>
 

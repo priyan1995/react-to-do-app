@@ -41,21 +41,27 @@ const AddToDo = () => {
     }
 
 
-    
+
     return (
         <>
 
             <h2>Add new item</h2>
             <form onSubmit={addToDo} id="todoForm">
 
-                <input
-                    type="text"
-                    name="todoItem"
-                    onChange={handleAddTodo}
-                    required
-                />
-
-                <button type="submit">Submit</button>
+                <div className="row form-group">
+                <div className="col-lg-8">
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="todoItem"
+                        onChange={handleAddTodo}
+                        required
+                    />
+                    </div>
+                    <div className="col-lg-4">
+                    <button type="submit" className="btn btn-primary w-100 ">Submit</button>
+                    </div>
+                </div>
             </form>
 
         </>

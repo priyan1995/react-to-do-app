@@ -55,22 +55,30 @@ export const EditTodo = () => {
 
             <form onSubmit={editTodoSubmit} id="editForm">
 
-                <input
-                    value={todotem.todoId}
-                    disabled
-                />
-
-                <input
-                    type="text"
-                    name="todoItem"
-                    value={todotem.todoItem}
-                    onChange={handleEditChange}
-                    required
-                />
-
-                <button type="submit">Submit</button>
-
+                <div className="row form-group">
+                    <div className="col-lg-6">
+                        <input
+                            className="form-control"
+                            value={todotem.todoId}
+                            disabled
+                        />
+                    </div>
+                    <div className="col-lg-6">
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="todoItem"
+                            value={todotem.todoItem}
+                            onChange={handleEditChange}
+                            required
+                        />
+                    </div>
+                    <div className="col-lg-4">
+                        <button type="submit" className="btn btn-primary w-100 mt-15">Submit</button>
+                    </div>
+                </div>
             </form>
+
 
             <Link to="/">Back To List</Link>
 
