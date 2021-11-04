@@ -11,6 +11,7 @@ export const EditTodo = () => {
 
     const [todotem, editTodo] = useState({})
 
+    // get data from API
     useEffect(() => {
         FirebaseDb.child(`to-do/${editId}`).on('value', snapshot => {
             if (snapshot.val() != null) {
@@ -19,10 +20,35 @@ export const EditTodo = () => {
                     ...snapshot.val()
                    
                 })
-               // console.log(todotem)
+                console.log(todotem)
             }
         })
     },[])
+
+   // ===== handle change 
+   const handleEditChange = (e) => {
+    editTodo({
+        todoId:todotem.todoId,
+        [e.target.name]:e.target.value.trim()
+    })
+   }
+
+
+    // === submit data   
+    const editTodoSubmit = (e) =>{
+        e.preventDefault();
+        console.log(todotem);  
+        
+        FirebaseDb.child(`to-do/${editId}`).set(
+            todotem,
+            err=>{
+                if(err){
+                    console.log(err)
+                }
+            }
+        )
+        
+    }
 
     return (
         <>
@@ -31,15 +57,18 @@ export const EditTodo = () => {
 
             <h2>Edit Todo</h2>
 
-            {/* <form onSubmit={editTodo} id="editForm">
+            <form onSubmit={editTodoSubmit} id="editForm">
             <input
                 type="text"
                 name="todoItem"
-                onChange={}
-                value={}
+                value={todotem.todoItem}
+                onChange={handleEditChange}
+                required
             />
 
-            </form> */}
+            <button type="submit">Submit</button>
+
+            </form>
 
         </>
     )
