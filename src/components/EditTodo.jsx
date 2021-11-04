@@ -80,7 +80,7 @@ export const EditTodo = () => {
             </form>
 
 
-            <Link to="/">Back To List</Link>
+            <Link to="/react-to-do-app/">Back To List</Link>
 
         </>
     )
