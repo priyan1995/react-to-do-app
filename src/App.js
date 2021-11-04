@@ -21,7 +21,7 @@ function App() {
                 <ToDoList />
               </Route>
 
-              <Route path="/react-to-do-app/edit/:editId">
+              <Route path="/edit/:editId">
 
                 <EditTodo />
 
