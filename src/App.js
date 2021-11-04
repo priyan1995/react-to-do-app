@@ -16,10 +16,7 @@ function App() {
             <div className="container ">
 
 
-
-
-
-              <Route exact path="/">
+              <Route exact path="/react-to-do-app/">
                 <AddToDo />
                 <ToDoList />
               </Route>
