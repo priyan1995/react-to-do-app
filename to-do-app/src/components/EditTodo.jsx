@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FirebaseDb from '../firebase';
 
 export const EditTodo = () => {
 
-    
-    const { editId }  = useParams();
 
-    //console.log(editId)
+    const { editId } = useParams();
 
     const [todotem, editTodo] = useState({})
 
@@ -15,60 +13,66 @@ export const EditTodo = () => {
     useEffect(() => {
         FirebaseDb.child(`to-do/${editId}`).on('value', snapshot => {
             if (snapshot.val() != null) {
-                
+
                 editTodo({
                     ...snapshot.val()
-                   
+
                 })
                 console.log(todotem)
             }
         })
-    },[])
+    }, [])
 
-   // ===== handle change 
-   const handleEditChange = (e) => {
-    editTodo({
-        todoId:todotem.todoId,
-        [e.target.name]:e.target.value.trim()
-    })
-   }
+    // ===== handle change 
+    const handleEditChange = (e) => {
+        editTodo({
+            todoId: todotem.todoId,
+            [e.target.name]: e.target.value
+        })
+    }
 
 
     // === submit data   
-    const editTodoSubmit = (e) =>{
+    const editTodoSubmit = (e) => {
         e.preventDefault();
-        console.log(todotem);  
-        
+        console.log(todotem);
+
         FirebaseDb.child(`to-do/${editId}`).set(
             todotem,
-            err=>{
-                if(err){
+            err => {
+                if (err) {
                     console.log(err)
                 }
             }
         )
-        
+
     }
 
     return (
         <>
 
-
-
             <h2>Edit Todo</h2>
 
             <form onSubmit={editTodoSubmit} id="editForm">
-            <input
-                type="text"
-                name="todoItem"
-                value={todotem.todoItem}
-                onChange={handleEditChange}
-                required
-            />
 
-            <button type="submit">Submit</button>
+                <input
+                    value={todotem.todoId}
+                    disabled
+                />
+
+                <input
+                    type="text"
+                    name="todoItem"
+                    value={todotem.todoItem}
+                    onChange={handleEditChange}
+                    required
+                />
+
+                <button type="submit">Submit</button>
 
             </form>
+
+            <Link to="/">Back To List</Link>
 
         </>
     )
